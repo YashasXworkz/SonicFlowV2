@@ -39,6 +39,14 @@ const Player = () => {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
 
+  // Format time in MM:SS
+  const formatTime = (timeInSeconds) => {
+    if (isNaN(timeInSeconds)) return "00:00";
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+  };
+
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -98,6 +106,7 @@ const Player = () => {
             )}
 
             <div className="w-full flex items-center font-thin text-green-400">
+              <span className="text-xs mr-2">{formatTime(progress)}</span>
               <input
                 type="range"
                 min={"0"}
@@ -106,6 +115,7 @@ const Player = () => {
                 value={(progress / duration) * 100}
                 onChange={handleProgressChange}
               />
+              <span className="text-xs ml-2">{formatTime(duration)}</span>
             </div>
 
             <div className="flex justify-center items-center gap-4">

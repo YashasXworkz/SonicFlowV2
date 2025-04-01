@@ -7,7 +7,6 @@ import { UserData } from "../context/User";
 
 const PlayList = ({ user }) => {
   const { songs, setSelectedSong, setIsPlaying } = SongData();
-
   const [myPlaylist, setMyPlaylist] = useState([]);
 
   useEffect(() => {
@@ -24,10 +23,15 @@ const PlayList = ({ user }) => {
     setIsPlaying(true);
   };
 
-  const { addToPlaylist } = UserData();
+  const { addToPlaylist, user: currentUser } = UserData();
 
   const savePlayListHandler = (id) => {
     addToPlaylist(id);
+  };
+
+  // Check if a song is bookmarked
+  const isBookmarked = (songId) => {
+    return currentUser?.playlist?.includes(songId.toString());
   };
 
   return (
@@ -88,7 +92,7 @@ const PlayList = ({ user }) => {
             </p>
             <p className="flex justify-center items-center gap-5">
               <p
-                className="text-[15px] text-center"
+                className={`text-[15px] text-center ${isBookmarked(e._id) ? "text-green-500" : ""}`}
                 onClick={() => savePlayListHandler(e._id)}
               >
                 <FaBookmark />

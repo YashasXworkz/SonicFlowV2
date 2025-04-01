@@ -4,12 +4,15 @@ import App from "./App.jsx";
 import "./index.css";
 import { UserProvider } from "./context/User.jsx";
 import { SongProvider } from "./context/Song.jsx";
+import { RadioProvider } from "./context/RadioContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
       <SongProvider>
-        <App />
+        <RadioProvider>
+          <App />
+        </RadioProvider>
       </SongProvider>
     </UserProvider>
   </StrictMode>

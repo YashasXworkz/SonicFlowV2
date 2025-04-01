@@ -26,11 +26,17 @@ const Album = () => {
     setIsPlaying(true);
   };
 
-  const { addToPlaylist } = UserData();
+  const { addToPlaylist, user } = UserData();
 
   const savePlayListHandler = (id) => {
     addToPlaylist(id);
   };
+
+  // Check if a song is bookmarked
+  const isBookmarked = (songId) => {
+    return user?.playlist?.includes(songId.toString());
+  };
+
   return (
     <Layout>
       {albumData && (
@@ -91,7 +97,7 @@ const Album = () => {
                 </p>
                 <p className="flex justify-center items-center gap-5">
                   <p
-                    className="text-[15px] text-center"
+                    className={`text-[15px] text-center ${isBookmarked(e._id) ? "text-green-500" : ""}`}
                     onClick={() => savePlayListHandler(e._id)}
                   >
                     <FaBookmark />

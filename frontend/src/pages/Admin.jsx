@@ -117,7 +117,7 @@ const Admin = () => {
         <button
           disabled={loading}
           className="auth-btn"
-          style={{ width: "100px" }}
+          style={{ width: "200px" }}
         >
           {loading ? "Please Wait..." : "Add"}
         </button>
@@ -163,22 +163,24 @@ const Admin = () => {
           />
         </div>
 
-        <select
-          className="auth-input"
-          value={album}
-          onChange={(e) => setAlbum(e.target.value)}
-        >
-          <option value="">Choose Album</option>
-          {albums &&
-            albums.map((e, i) => (
-              <option value={e._id} key={i}>
-                {e.title}
-              </option>
-            ))}
-        </select>
+        <div className="mb-4">
+          <select
+            className="auth-input"
+            value={album}
+            onChange={(e) => setAlbum(e.target.value)}
+          >
+            <option value="">Choose Album</option>
+            {albums &&
+              albums.map((e, i) => (
+                <option value={e._id} key={i}>
+                  {e.title}
+                </option>
+              ))}
+          </select>
+        </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">audio</label>
+          <label className="block text-sm font-medium mb-1">Audio</label>
           <input
             type="file"
             className="auth-input"
@@ -191,7 +193,7 @@ const Admin = () => {
         <button
           disabled={loading}
           className="auth-btn"
-          style={{ width: "100px" }}
+          style={{ width: "200px" }}
         >
           {loading ? "Please Wait..." : "Add"}
         </button>
@@ -202,7 +204,7 @@ const Admin = () => {
         <div className="flex justify-center md:justify-start gap-2 items-center flex-wrap">
           {songs &&
             songs.map((e, i) => (
-              <div key={i} className="bg-[#181818] p-4 rounded-lg shadow-md">
+              <div key={i} className="bg-[#181818] p-2 rounded-lg shadow-md">
                 {e.thumbnail ? (
                   <img
                     src={e.thumbnail.url}
@@ -211,7 +213,7 @@ const Admin = () => {
                   />
                 ) : (
                   <div className="flex flex-col justify-center items-center gap-2">
-                    <input type="file" onChange={fileChangeHandler} />
+                    <input type="file" onChange={fileChangeHandler} accept="image/*" />
                     <button
                       onClick={() => addThumbnailHandler(e._id)}
                       className="bg-green-500 text-white px-2 py-1 rounded"
@@ -227,9 +229,10 @@ const Admin = () => {
 
                 <button
                   onClick={() => deleteHandler(e._id)}
-                  className="px-3 py-1 bg-red-500 text-white rounded"
+                  className="px-3 py-1 mt-2 bg-red-500 text-white rounded flex items-center gap-1"
                 >
                   <MdDelete />
+                  Delete
                 </button>
               </div>
             ))}
