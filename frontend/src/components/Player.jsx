@@ -105,7 +105,7 @@ const Player = () => {
               </>
             )}
 
-            <div className="w-full flex items-center font-thin text-green-400">
+            <div className="w-full flex items-center font-thin text-white">
               <span className="text-xs mr-2">{formatTime(progress)}</span>
               <input
                 type="range"
